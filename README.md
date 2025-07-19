@@ -11,3 +11,23 @@ Automated system for Leetcode streamers to generate thumbnails, titles, descript
 - **scripts/**: DevOps and setup scripts
 
 See directory structure in project description for details.
+
+## Contributing
+
+If you want to contribute to this project, please follow standard branch naming protocols:
+
+Use descriptive names for branches. Examples:
+
+- `feature/user-authentication`
+- `feature/frontend-navbar`
+- `bugfix/fix-thumbnail-generation`
+- `bugfix/leetcode-api-error`
+- `docs/update-readme`
+- `chore/update-dependencies`
+- `refactor/backend-services`
+- `test/add-api-tests`
+
+Avoid using generic names like `dev` or `test`.
+Always create a new branch from `main` before starting your work.
+
+This helps keep the repository organized and makes collaboration easier for everyone.
