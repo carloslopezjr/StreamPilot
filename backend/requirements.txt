@@ -1,7 +1,9 @@
 # Add backend dependencies here
+flask
 
 # OpenAI APIs
-
+OpenAI
+requests
 
 # LeetCode APIs
 
