@@ -1,9 +1,13 @@
 from openai import OpenAI
 import requests
 import re
+import dotenv
+import os
 
-client = OpenAI(api_key="")
+dotenv.load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 def gen_desc(prompt):
 
