@@ -2,7 +2,7 @@ from openai import OpenAI
 import requests
 import re
 
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="")
 
 
 def gen_desc(prompt):
@@ -58,3 +58,5 @@ def gen_image(desc):
         print("Image saved as generated_image.png")
     else:
         print("Failed to download image. Status code:", img_response.status_code)
+
+print(gen_desc("I'm doing a livestream where im going to solve three leetcode binary search problems"))
