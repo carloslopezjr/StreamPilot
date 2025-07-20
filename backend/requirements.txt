@@ -1,4 +1,6 @@
 # Add backend dependencies here
+flask
+requests
 
 # OpenAI APIs
 
