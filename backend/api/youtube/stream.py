@@ -1,7 +1,6 @@
 from google_auth_oauthlib.flow import Flow
 from googleapiclient.discovery import build
 from flask import session
-import datetime
 
 def get_authenticated_service(token):
     creds = token  # Load from session or DB
