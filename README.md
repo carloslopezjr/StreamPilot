@@ -31,3 +31,15 @@ Avoid using generic names like `dev` or `test`.
 Always create a new branch from `main` before starting your work.
 
 This helps keep the repository organized and makes collaboration easier for everyone.
+
+## Environment Variables
+
+This project uses environment variables for configuration.  
+Copy the `.env.example` file to `.env` and fill in your own values.
+
+```sh
+cp .env.example .env
+```
+
+Update the variables in `.env` with your personal credentials and API keys.  
+Do **not** commit your `.env` file to
