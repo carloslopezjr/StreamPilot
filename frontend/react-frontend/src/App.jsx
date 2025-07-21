@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
+import API from '../API.js'
 
 const difficultyOptions = ['Easy', 'Medium', 'Hard'];
 const topicOptions = [
@@ -44,6 +45,35 @@ export default function App() {
   const diffRef = useRef(null);
   const topicRef = useRef(null);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    alert(`Submitted:
+    Difficulties: ${difficulties.join(', ') || 'None'}
+    Topics: ${topics.join(', ') || 'None'}
+    Chat: ${chatInput || '(empty)'}
+    YouTube Date: ${date || 'Not set'}
+    YouTube Time: ${time || 'Not set'}`);
+    
+    const payload = {
+      'input' : chatInput,
+      'topics' : topics,
+      'difficulty' : difficulties,
+      'date' : date,
+      'time' : time
+    }
+
+    const response = await API.scheduleStream(payload);
+
+    if (response.ok) {
+      const data = await response.json();
+
+      console.log(data);
+    } else {
+      console.error('Encountered error');
+    }
+  }
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (diffRef.current && !diffRef.current.contains(event.target)) {
@@ -61,14 +91,14 @@ export default function App() {
     setter(current.includes(value) ? current.filter(v => v !== value) : [...current, value]);
   };
 
-  const handleSubmit = () => {
-    alert(`Submitted:
-Difficulties: ${difficulties.join(', ') || 'None'}
-Topics: ${topics.join(', ') || 'None'}
-Chat: ${chatInput || '(empty)'}
-YouTube Date: ${date || 'Not set'}
-YouTube Time: ${time || 'Not set'}`);
-  };
+//   const handleSubmit = () => {
+//     alert(`Submitted:
+// Difficulties: ${difficulties.join(', ') || 'None'}
+// Topics: ${topics.join(', ') || 'None'}
+// Chat: ${chatInput || '(empty)'}
+// YouTube Date: ${date || 'Not set'}
+// YouTube Time: ${time || 'Not set'}`);
+//   };
 
   return (
     <div className="container">

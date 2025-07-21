@@ -1,9 +1,0 @@
-{
-  "name": "stream-automation-frontend",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "start": "echo 'Add your frontend framework start command here'"
-  },
-  "dependencies": {}
-}
