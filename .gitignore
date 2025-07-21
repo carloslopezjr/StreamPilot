@@ -13,3 +13,7 @@ logs/
 # OS
 .DS_Store
 Thumbs.db
+venv
+
+# credentials
+backend/credentials-youtube.json
