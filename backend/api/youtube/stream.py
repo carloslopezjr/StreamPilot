@@ -1,13 +1,16 @@
-from google_auth_oauthlib.flow import Flow
-from googleapiclient.discovery import build
 from flask import session
+from api.openai.openai_api import gen_desc
+import os
 
-def get_authenticated_service(token):
-    creds = token  # Load from session or DB
-    return build("youtube", "v3", credentials=creds)
+def stream_format(prompt):
+    api_response = gen_desc(prompt) # change prompt to what user wants
 
-def schedule_stream(title, description, scheduled_time, thumbnail_path=None):
-    youtube = get_authenticated_service(session['token'])
+    title = api_response['title']
+    description = api_response['description']
+
+    return ({"title": title, "description" : description})
+
+def create_stream(title, description, scheduled_time, youtube, thumbnail_path=None):
 
     # 1. Create broadcast
     broadcast = youtube.liveBroadcasts().insert(
