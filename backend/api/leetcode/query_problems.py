@@ -3,7 +3,7 @@ import requests
 import json
 import pprint
 import random
-from api.leetcode.service import fetch_all_approved_unique_problem_names
+from service import fetch_all_approved_unique_problem_names
 
 def load_approved_problems(filepath: str) -> set:
     """Load approved problem titles from a text file into a set."""
@@ -88,7 +88,6 @@ if __name__ == "__main__":
     hwg_cookies = "LEETCODE_SESSION=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfYXV0aF91c2VyX2lkIjoiMTI3ODIxNDkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJhbGxhdXRoLmFjY291bnQuYXV0aF9iYWNrZW5kcy5BdXRoZW50aWNhdGlvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI5Mzc4MmNhYzAxYzVlMDI2ZDU4ZmUxZGJmZWQ1MDkzYmMxMWI3NjkzZGE4Zjg1MmM0ZGJiNjM0ZWVhMDZhZDhkIiwic2Vzc2lvbl91dWlkIjoiNjBiZWY0MjciLCJpZCI6MTI3ODIxNDksImVtYWlsIjoiaGFyZHdvcmtpbmdnZW5pdXNlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImhhcmR3b3JraW5nZ2VuaXVzZXMiLCJ1c2VyX3NsdWciOiJoYXJkd29ya2luZ2dlbml1c2VzIiwiYXZhdGFyIjoiaHR0cHM6Ly9hc3NldHMubGVldGNvZGUuY29tL3VzZXJzL2hhcmR3b3JraW5nZ2VuaXVzZXMvYXZhdGFyXzE3MTExNTIzNzEucG5nIiwicmVmcmVzaGVkX2F0IjoxNzUzMDQyODU1LCJpcCI6IjI2MDM6ODA4MDoxZDAwOjRiODE6OWM3Zjo1MzY1OmQ4Y2U6YjFmYSIsImlkZW50aXR5IjoiY2U2OWI4NTFjNGVkYzdlZWJmYjM5OThhYTk0YTcxNTciLCJkZXZpY2Vfd2l0aF9pcCI6WyJkYjZhYjE1MjZkMjA3NGJmZTVkZjQyNjU1OWQ1ZjMzOCIsIjI2MDM6ODA4MDoxZDAwOjRiODE6OWM3Zjo1MzY1OmQ4Y2U6YjFmYSJdfQ.CLtiWuIQzUWd28b8zJI-_WcalwQBCsht0tTnKlMPpX8; csrftoken=fsS1nKtxhptx2T1soDHVXcVu6rbwbEGpHq402UdkEVvyjDNhM5aKVLlKvceb588L"
     test_csrftoken = ""  # Replace with actual value if needed
     # Import the function from service.py
-    from api.leetcode.service import fetch_all_approved_unique_problem_names
     # Fetch and save solved problems
     fetch_all_approved_unique_problem_names(hwg_cookies, test_csrftoken, output_path="approved_problems.txt")
     # Load solved problems from file
