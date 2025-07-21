@@ -3,7 +3,7 @@ import requests
 import json
 import pprint
 import random
-from service import fetch_all_approved_unique_problem_names
+from .service import fetch_all_approved_unique_problem_names
 
 def load_approved_problems(filepath: str) -> set:
     """Load approved problem titles from a text file into a set."""
