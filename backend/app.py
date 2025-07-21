@@ -5,7 +5,6 @@ from google_auth_oauthlib.flow import Flow
 from google.oauth2.credentials import Credentials
 import os
 import datetime
-import pathlib
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key'  # Required for session
