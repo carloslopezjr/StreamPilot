@@ -1,4 +1,4 @@
-# Stream Automation
+# Stream Pilot
 
 Automated system for Leetcode streamers to generate thumbnails, titles, descriptions, and select problems for scheduled streams using natural language.
 
