@@ -5,7 +5,7 @@ from flask import Flask, redirect, request, session, url_for, jsonify
 from google_auth_oauthlib.flow import Flow
 from google.oauth2.credentials import Credentials
 import os
-import datetime
+from datetime import datetime, timezone, timedelta
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -83,6 +83,7 @@ def schedule_stream():
     topics = [item.upper() for item in topics]
     date = data.get('date')
     time = data.get('time')
+    print(date, time)
     hwg_cookies = "LEETCODE_SESSION=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfYXV0aF91c2VyX2lkIjoiMTI3ODIxNDkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJhbGxhdXRoLmFjY291bnQuYXV0aF9iYWNrZW5kcy5BdXRoZW50aWNhdGlvbkJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI5Mzc4MmNhYzAxYzVlMDI2ZDU4ZmUxZGJmZWQ1MDkzYmMxMWI3NjkzZGE4Zjg1MmM0ZGJiNjM0ZWVhMDZhZDhkIiwic2Vzc2lvbl91dWlkIjoiNjBiZWY0MjciLCJpZCI6MTI3ODIxNDksImVtYWlsIjoiaGFyZHdvcmtpbmdnZW5pdXNlc0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImhhcmR3b3JraW5nZ2VuaXVzZXMiLCJ1c2VyX3NsdWciOiJoYXJkd29ya2luZ2dlbml1c2VzIiwiYXZhdGFyIjoiaHR0cHM6Ly9hc3NldHMubGVldGNvZGUuY29tL3VzZXJzL2hhcmR3b3JraW5nZ2VuaXVzZXMvYXZhdGFyXzE3MTExNTIzNzEucG5nIiwicmVmcmVzaGVkX2F0IjoxNzUzMDQyODU1LCJpcCI6IjI2MDM6ODA4MDoxZDAwOjRiODE6OWM3Zjo1MzY1OmQ4Y2U6YjFmYSIsImlkZW50aXR5IjoiY2U2OWI4NTFjNGVkYzdlZWJmYjM5OThhYTk0YTcxNTciLCJkZXZpY2Vfd2l0aF9pcCI6WyJkYjZhYjE1MjZkMjA3NGJmZTVkZjQyNjU1OWQ1ZjMzOCIsIjI2MDM6ODA4MDoxZDAwOjRiODE6OWM3Zjo1MzY1OmQ4Y2U6YjFmYSJdfQ.CLtiWuIQzUWd28b8zJI-_WcalwQBCsht0tTnKlMPpX8; csrftoken=fsS1nKtxhptx2T1soDHVXcVu6rbwbEGpHq402UdkEVvyjDNhM5aKVLlKvceb588L"
     test_csrftoken = ""
 
@@ -90,12 +91,21 @@ def schedule_stream():
     print(topics)
 
     # Your logic to generate title, description from prompt
-    # api_response = stream_format(prompt)
-    # title = api_response['title']
-    # description = api_response['description']
-    title = "testing"
-    description = "description"
-    scheduled_time = datetime.datetime.fromisoformat(f"{date}T{time}")
+    api_response = stream_format(prompt)
+    title = api_response['title']
+    description = api_response['description']
+    # title = "testing"
+    # description = "description"
+    
+    #1 Get local time
+    local_dt = datetime.fromisoformat(f"{date}T{time}")
+    
+    # 2. Attach your local timezone
+    local_dt = local_dt.replace(tzinfo=timezone(timedelta(hours=-5)))
+    
+    # 3. Convert to UTC
+    scheduled_time = local_dt.astimezone(timezone.utc)
+    
 
     create_stream(title, description, scheduled_time, youtube)
 
